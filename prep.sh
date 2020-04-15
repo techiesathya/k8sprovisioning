@@ -1,3 +1,5 @@
+# This is an initial terraform infra provisioning script
+
 #!/bin/bash
 
 RESOURCE_GROUP_NAME=sg-rg-provisioning
