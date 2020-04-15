@@ -1,0 +1,10 @@
+main.tfvars
+.terraform/plugins/darwin_amd64/terraform-provider-azurerm_v1.44.0_x4
+.terraform/plugins/darwin_amd64/lock.json
+.terraform/modules/modules.json
+.terraform/terraform.tfstate
+terraform.tfstate
+terraform.tfstate.backup
+errored.tfstate
+.terraform/plugins/darwin_amd64/terraform-provider-azuread_v0.8.0_x4
+.terraform/plugins/darwin_amd64/terraform-provider-random_v2.2.1_x4
