@@ -7,5 +7,6 @@ output "app_registration_password" {
 }
 
 output "service_principal" {
-  value = azuread_service_principal.service_principal.object_id
+  depends_on = [azuread_application.app_registration.application_id]
+  value      = azuread_service_principal.service_principal.object_id
 }

@@ -29,4 +29,6 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   }
 
   tags = var.tags
+
+  depends_on = [var.service_principle_dependancy]
 }

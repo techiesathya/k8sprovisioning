@@ -67,3 +67,4 @@ variable "tags" {
   type = map(string)
 }
 
+variable "service_principle_dependancy" { type = any }
