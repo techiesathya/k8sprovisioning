@@ -82,7 +82,7 @@ module "k8s" {
 
 module "public_dns" {
   source              = "./modules/network/dns"
-  domain_name         = "k8s.sathya.me.uk"
+  domain_name         = var.domain_name
   resource_group_name = module.rg.resource_group_name
   tags                = local.default_tags
 
