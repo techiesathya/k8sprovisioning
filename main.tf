@@ -74,7 +74,7 @@ module "k8s" {
   service_principal_client_id     = module.app_registration.application_id
   service_principal_client_secret = module.app_registration.app_registration_password
   tags                            = local.default_tags
-  node_count                      = 1
+  node_count                      = 2
   node_poolname                   = "nodepool01"
   vm_size                         = "Standard_D2s_v3"
   service_principle_dependancy    = [module.app_registration]
@@ -83,7 +83,7 @@ module "k8s" {
 module "public_dns" {
   source              = "./modules/network/dns"
   domain_name         = "k8s.sathya.me.uk"
-  resource_group_name = module.rg.resource_group_name #format("sg-rg-k8s-%s", var.stage)
+  resource_group_name = module.rg.resource_group_name
   tags                = local.default_tags
 
 }

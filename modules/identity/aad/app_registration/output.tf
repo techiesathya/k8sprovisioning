@@ -3,10 +3,9 @@ output "application_id" {
 }
 
 output "app_registration_password" {
-  value = random_password.password.result
+  value = azuread_application_password.application_password.value
 }
 
 output "service_principal" {
-  depends_on = [azuread_application.app_registration.application_id]
-  value      = azuread_service_principal.service_principal.object_id
+  value = azuread_service_principal.service_principal.object_id
 }
