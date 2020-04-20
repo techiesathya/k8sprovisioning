@@ -21,6 +21,10 @@ variable "tenant_id" {
   type = string
 }
 
+variable "domain_name" {
+  type = string
+}
+
 locals {
   default_tags = merge({ "Application" = var.application_name, "Stage" = var.stage })
 }
