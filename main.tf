@@ -47,7 +47,7 @@ module "acr_role_assignment" {
   source               = "./modules/identity/aad/roleassignments"
   scope                = module.acr.service_principal
   role_definition_name = "AcrPull"
-  principal_id         = module.app_registration.service_principal
+  principal_id         = module.app_registration.service_principal_id
 }
 
 module "k8s_public_ip" {
@@ -63,7 +63,7 @@ module "k8s_public_ip_role_assignment" {
   source               = "./modules/identity/aad/roleassignments"
   scope                = module.k8s_public_ip.service_principal
   role_definition_name = "Network Contributor"
-  principal_id         = module.app_registration.service_principal
+  principal_id         = module.app_registration.service_principal_id
 }
 
 module "k8s" {
@@ -72,7 +72,7 @@ module "k8s" {
   location                        = var.primary_location
   resource_group_name             = module.rg.resource_group_name
   service_principal_client_id     = module.app_registration.application_id
-  service_principal_client_secret = module.app_registration.app_registration_password
+  service_principal_client_secret = module.app_registration.service_principle_password
   tags                            = local.default_tags
   node_count                      = 2
   node_poolname                   = "nodepool01"
