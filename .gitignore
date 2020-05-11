@@ -9,3 +9,8 @@ errored.tfstate
 .terraform/plugins/darwin_amd64/terraform-provider-azuread_v0.8.0_x4
 .terraform/plugins/darwin_amd64/terraform-provider-random_v2.2.1_x4
 cheetsheet.sh
+k8sinfra/.DS_Store
+networkinfra/.terraform
+k8sinfra/.terraform
+networkinfra/.terraform.tfstate.lock.info
+.DS_Store
