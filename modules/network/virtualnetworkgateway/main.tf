@@ -15,7 +15,8 @@ resource "azurerm_virtual_network_gateway" "virtual_gateway" {
     subnet_id                     = var.subnet_id
   }
   vpn_client_configuration {
-    address_space = var.address_space
+    vpn_client_protocols = ["IkeV2", "SSTP"]
+    address_space        = var.address_space
     root_certificate {
       name             = "Root-Cert"
       public_cert_data = var.gw_public_cert_data
