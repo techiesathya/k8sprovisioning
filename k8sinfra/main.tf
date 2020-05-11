@@ -22,7 +22,7 @@ terraform {
 }
 
 module "rg" {
-  source   = "./modules/rg/"
+  source   = "./../modules/rg/"
   name     = format("sg-rg-k8s-%s", var.stage)
   location = var.primary_location
   tags     = local.default_tags
@@ -30,13 +30,13 @@ module "rg" {
 }
 
 module "app_registration" {
-  source          = "./modules/identity/aad/app_registration"
+  source          = "./../modules/identity/aad/app_registration"
   name            = "sp01"
   identifier_uris = [format("https://%s", var.application_name)]
 }
 
 module "acr" {
-  source              = "./modules/acr"
+  source              = "./../modules/acr"
   resource_group_name = module.rg.resource_group_name
   name                = "sgk8sacr01"
   location            = var.primary_location
@@ -44,14 +44,14 @@ module "acr" {
 }
 
 module "acr_role_assignment" {
-  source               = "./modules/identity/aad/roleassignments"
+  source               = "./../modules/identity/aad/roleassignments"
   scope                = module.acr.service_principal
   role_definition_name = "AcrPull"
   principal_id         = module.app_registration.service_principal_id
 }
 
 module "k8s_public_ip" {
-  source              = "./modules/network/publicip"
+  source              = "./../modules/network/publicip"
   public_ip_name      = "k8s_public_ip"
   resource_group_name = module.rg.resource_group_name
   location            = var.primary_location
@@ -60,14 +60,14 @@ module "k8s_public_ip" {
 }
 
 module "k8s_public_ip_role_assignment" {
-  source               = "./modules/identity/aad/roleassignments"
+  source               = "./../modules/identity/aad/roleassignments"
   scope                = module.k8s_public_ip.service_principal
   role_definition_name = "Network Contributor"
   principal_id         = module.app_registration.service_principal_id
 }
 
 module "k8s" {
-  source                          = "./modules/k8s"
+  source                          = "./../modules/k8s"
   name                            = "sg-aks-poc01"
   location                        = var.primary_location
   resource_group_name             = module.rg.resource_group_name
@@ -81,7 +81,7 @@ module "k8s" {
 }
 
 module "public_dns" {
-  source              = "./modules/network/dns"
+  source              = "./../modules/network/dns"
   domain_name         = var.domain_name
   resource_group_name = module.rg.resource_group_name
   tags                = local.default_tags
